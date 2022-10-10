@@ -1,25 +1,21 @@
-    {% if site.footer_fixed %}
-    <footer class="fixed-bottom">
-      <div class="container mt-0">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
-      </div>
-    </footer>
-    {%- else -%}
-    <footer class="sticky-bottom mt-5">
-      <div class="container">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
-      </div>
-    </footer>
-    {%- endif %}
+{% assign footer = site.data.footer['main'] %}
+{% assign ui_text = site.data.ui-text['ui_text'] %}
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="copy">
+        <p>{{ footer.text1 }}</p>
+        <p>{{ footer.text2 }}</p>
+    </div>
+    <div class="soc-box">
+        <div class="follow-label">{{ ui_text.follow_me }}</div>
+        <div class="soc">
+            {% for link in footer.social %}
+            <a target="_blank" href="{{ link.url }}" title="{{ link.title }}">
+                <span class="icon {{ link.icon }}"></span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="clear"></div>
+</footer>
